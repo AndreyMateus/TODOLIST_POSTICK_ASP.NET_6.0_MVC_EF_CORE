@@ -1,0 +1,50 @@
+﻿@model Note;
+
+
+<a asp-controller="notes" asp-action="Index" class="btn btn-dark distance">Voltar</a>
+
+<form asp-controller="notes" asp-action="Salvar" method="POST" class="form">
+
+    @if (Model.Id != 0)
+    {
+        <h2>Editando uma Nota</h2>
+        @*
+         OBS: Porém se quisermos EDITAR um REGISTRO já EXISTENTE, precisamos passar o MESMO ID que estamos RECEBENDO, para que o REGISTRO com esse ID seja EDITADO, e NÂO seja CRIADO um NOVO REGISTRO com OUTRO ID, PORÉM ISSO ACONTECE IMPLICITAMENTE também, e se o valor do INPUT não for populado aqui, ele enviará o valor PADRÃO do TIPO, MAS se quisermos EDITAR um VALOR de um REGISTRO já EXISTENTE, precisamos PASSAR o ID que está sendo RECEBIDO, pois ESSE ID será REPASSADO para a ACTION.
+        *@
+        <div class="card border border-dark distance " style="width: 18rem;">
+            <div class="card-body">
+                <input asp-for="Id" type="hidden" value="@Model.Id"/>
+
+                <input asp-for="DataDeCriacao" type="DateTime" value="@Model.DataDeCriacao.ToString("d")" class="form-control distance" required/>
+
+                <input asp-for="Obervacao" type="text" class="form-control distance" placeholder="Título da Nota" required value="@Model.Obervacao"/>
+
+                <div class="form-floating distance">
+                    <textarea asp-for="Texto" class="form-control" value="@Model.Texto" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" required></textarea>
+                    <label for="floatingTextarea2">Texto da Nota</label>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h2>Adicionando uma Nota</h2>
+        <div class="card border border-dark distance" style="width: 18rem;">
+            <div class="card-body">
+                <input asp-for="DataDeCriacao" type="DateTime" value="@DateTime.UtcNow.Date.ToString("d")" class="form-control distance" required/>
+
+                <input asp-for="Obervacao" type="text" class="form-control distance" placeholder="Título da Nota" required/>
+
+                <div class="form-floating distance">
+                    <textarea asp-for="Texto" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" required></textarea>
+                    <label for="floatingTextarea2">Texto da Nota</label>
+                </div>
+
+            </div>
+        </div>
+    }
+
+    @* Ao clicar no Button ele executará o POST para a ACTION do CONTROLLER, basicamente ele criará uma instância do tipo do @model e enviará via parâmetro para a action *@
+    <button class="btn btn-success">Cadastrar</button>
+
+</form>

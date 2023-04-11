@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Note>;
+@*
+A diretiva @model deve ser a primeira linha de código em uma página Razor. Ela informa ao compilador Razor que a página espera receber um modelo com o tipo especificado. O tipo pode ser qualquer classe C# que esteja presente no projeto e que possa ser passado como modelo para a página.
+*@
+
+<div class="distance">
+    <a asp-controller="Notes" asp-action="AdicionarNota" class="btn btn-success">Cadastrar Nova Nota</a>
+</div>
+<h2> Suas Notas:</h2>
+
+@foreach (Note note  in Model)
+{
+    <div class="card border border-dark distance" style="width: 18rem;">
+        <div class="card-body">
+            
+            <h5 class="card-title">@note.Obervacao</h5>
+            
+            <p>Data: @note.DataDeCriacao.ToString("d")</p>
+            
+            <p > @note.Texto</p>
+
+            <a asp-controller="Notes" asp-action="Editar" asp-route-id="@note.Id" class="btn btn-warning">Editar</a>
+
+            <a asp-controller="Notes" asp-action="Excluir" asp-route-id="@note.Id" class="btn btn-danger">Excluir</a>
+
+            @* <p>@note.Id</p> *@
+
+        </div>
+    </div>
+}
