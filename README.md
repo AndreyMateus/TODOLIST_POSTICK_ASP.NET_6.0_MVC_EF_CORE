@@ -12,3 +12,6 @@ O aplicativo requer um banco de dados para ser executado. Certifique-se de que v
 O Notas/Posticks Web App é um sistema simples de notas/posticks desenvolvido com ASP.NET 6 e EF Core, utilizando o banco de dados SQL Server. O sistema permite que o usuário adicione, edite e exclua notas, que são exibidas na página inicial do aplicativo.
 
 Para instalar o aplicativo, o usuário precisa restaurar os pacotes necessários usando o comando `dotnet restore`. Em seguida, deve-se configurar um banco de dados SQL Server e atualizar o arquivo `appsettings.json` com a string de conexão correta. Por fim, deve-se aplicar as migrações no banco de dados usando o comando `dotnet ef database update`.
+
+[Link: Vídeo Demonstração](https://youtu.be/uTyrK3-aNbY)
+
